@@ -35,7 +35,11 @@ FfxFloat32 ComputeSampleDepthClip(FfxInt32x2 iPxSamplePos, FfxFloat32 fPreviousD
     FfxFloat32 fDepthThreshold = ffxMin(fCurrentDepthViewSpace, fPrevNearestDepthViewSpace);
 
     // WARNING: Ksep only works with reversed-z with infinite projection.
+#if !FFX_FSR2_OPTION_INVERTED_DEPTH
+    const FfxFloat32 Ksep = 4.0f * 1.37e-05f; // maister: Arbitrary hack to make normal depth work.
+#else
     const FfxFloat32 Ksep = 1.37e-05f;
+#endif
     FfxFloat32 fRequiredDepthSeparation = Ksep * fDepthThreshold * TanHalfFoV() * fHalfViewportWidth;
     FfxFloat32 fDepthDiff = fCurrentDepthViewSpace - fPrevNearestDepthViewSpace;
 
