@@ -71,6 +71,7 @@ endforeach( OUTPUTCONFIG CMAKE_CONFIGURATION_TYPES )
 
 add_compile_options(/MP)
 add_compile_definitions($<$<CONFIG:RelWithDebInfo>:USE_PIX>)
+set(CMAKE_INTERPROCEDURAL_OPTIMIZATION TRUE)
 
 # override build options in ffx-fsr2-api cmake
 option (FFX_FSR2_API_DX12 "Build FSR 2.0 DX12 backend" ${GFX_API_DX12})
