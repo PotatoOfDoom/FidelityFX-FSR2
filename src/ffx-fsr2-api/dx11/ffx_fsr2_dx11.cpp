@@ -138,6 +138,7 @@ FfxErrorCode ffxFsr2GetInterfaceDX11(
     return FFX_OK;
 }
 
+#define TIF TIF_DX11
 void TIF(HRESULT result)
 {
     if (FAILED(result))
